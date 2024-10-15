@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('state');
             $table->string('billing_address')->nullable();
             $table->string('shipping_address')->nullable();
-            $table->string('credit_period')->default(0);
+            $table->string('credit_period')->nullable();
             $table->integer('credit_limit')->default(0);
             $table->timestamps();
         });

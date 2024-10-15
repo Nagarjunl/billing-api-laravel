@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Parties;
+use Illuminate\Support\Facades\DB;
 
 class PartiesController extends Controller
 {
@@ -13,7 +15,8 @@ class PartiesController extends Controller
      */
     public function index()
     {
-        //
+        $parties = DB::table('parties')->get();
+        return response()->json($parties);
     }
 
     /**
@@ -34,9 +37,8 @@ class PartiesController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request); 
-        $result = Parties::create($request);
-        return $result;
+        $result = Parties::create($request->all());
+        return response()->json($result, 201); 
     }
 
     /**
@@ -47,7 +49,8 @@ class PartiesController extends Controller
      */
     public function show($id)
     {
-        //
+        $result = Parties::find($id);
+        return response()->json($result, 201); 
     }
 
     /**
@@ -58,7 +61,8 @@ class PartiesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $result = Parties::find($id);
+        return response()->json($result, 201); 
     }
 
     /**
@@ -70,7 +74,9 @@ class PartiesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $updatedParty =Parties::where('id', $id)->update($request->all());
+        $result = ['message' => 'Party updated successfully', 'party' => $updatedParty];
+        return response()->json($result);   
     }
 
     /**
@@ -81,6 +87,8 @@ class PartiesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $deleteParty =Parties::destroy( $id);
+        $result = ['message' => 'Party Deleted successfully', 'party' => $deleteParty];
+        return response()->json($result);  
     }
 }
