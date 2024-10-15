@@ -8,7 +8,6 @@ class Parties extends Model
 {
      protected $primaryKey = 'id';
      protected $fillable = [
-          'id',
           'party_name',
           'mobile_number',
           'email',
@@ -21,6 +20,7 @@ class Parties extends Model
           'credit_period',
           'credit_limit',
     ];
+    protected $hidden = ['created_at', 'updated_at'];
 }
 
 

@@ -20,5 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Route::apiResource('parties', PartiesController::class);
-Route::post('/parties', [PartiesController::class, 'store']);
+Route::apiResource('parties', PartiesController::class);
